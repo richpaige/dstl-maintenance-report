@@ -1,0 +1,84 @@
+\documentclass{llncs}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{courier}
+\usepackage{listings}
+\usepackage{enumerate}
+
+
+%\input{listings.tex}
+
+
+\begin{document}
+
+
+\title{Technical Obsolescence Management Strategies for Safety-Related Software for Airborne Systems -- Long-Term Support}
+
+\author{Richard F. Paige\inst{1}, Simos Gerasimou\inst{1} and Dimitris Kolovos\inst{1}}
+
+\institute{
+Department of Computer Science, University of York, UK.\\
+\email{[richard.paige,simos.gerasimou,dimitris.kolovos]\_at\_york.ac.uk}
+}
+\maketitle
+
+\begin{abstract}
+This report describes concerns related to supporting a technical solution to software obsolescence management long-term,
+specifically in the context of DSTL. It assumes the desire to support the technical solution in a context where safety-critical
+software systems are being developed, maintained and certified. It identifies three categories of concerns: those related
+to dependencies on the ecosystem in which the solution has been implemented; those related to programming language
+evolution; and those related to qualification (which are discussed in more detail in a companion report).
+\end{abstract}
+
+\section{Introduction}
+
+% Purpose of report - technical tender says "approach to supporting the solution long term", so we give concerns
+% Structure of report
+
+This report describes concerns related to supporting a technical solution to software obsolescence management long-term.
+The technical solution is based on transformations -- extraction transformations from a legacy application to an abstract
+specification (an abstract syntax tree), and generation transformations that re-host the application to a new software or
+hardware platform. The solution is described in more detail in a companion report \cite{DSTL-Report}.
+
+The solution builds on existing libraries, toolkits and APIs, and is  non-trivial software system in and of
+itself. Hence, there are issues pertaining to its ongoing support and maintenance. The report classifies these issues
+into three categories: concerns related to dependencies of the solution on its ecosystem and supporting infrastructure
+(particularly Eclipse); concerns related to programming language evolution; and concerns related to qualification. These
+are discussed in more detail in the following sections.
+
+The concerns are explicitly raised assuming that the technical solution is to be maintained in the context of DSTL, where it
+may be put to use in rehosting safety-critical or safety-related software for airborne systems. While some of the concerns
+related to dependencies on the ecosystem are generic (and would apply in any context), the importance and impact associated
+with mitigating these concerns are considered significant for DSTL. 
+
+
+
+\section{Concerns Related to Dependencies on Ecosystem}
+
+% Discuss dependencies on Eclipse (CDT, Epsilon etc) that they should be aware of. Perhaps mention the
+% typical Eclipse maintenance cycle and when changes may arise that may impact on maintaining the tool chain.
+
+\section{Concerns Related to Language Evolution}
+
+% Discuss potential evolution of front-end languages (which should not be significant as DSTL will primarily deal
+% older versions of C, C++, Ada.)
+%
+% Discuss potential evolution of back-end/target language (i.e., new versions of C++ with new language features,
+% what impact will this have on the overall tool chain).
+%
+% Briefly discuss potential for change in the languages used to implement the toolchain (e.g., new versions of Java)
+
+\section{Concerns Related to Tool Qualification}
+
+% Link to the assurance report, which should mention the risks associated with qualifying the toolchain against
+% DO-331. This section should be very brief and should highlight that if any of the components of the toolchain 
+% change (e.g., CDT) then qualification may be broken - but there are standard practices to address this. The main
+% expense will come from qualifying the toolchain initially.%
+
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
+\renewcommand{\baselinestretch}{1.0}
+
+
+\end{document}
