@@ -55,18 +55,18 @@ system integrators or developers would take on the use of the technical solution
 \section{Dependencies and Backwards Compatibility}
 The automated C/C++ obsolescence management solution developed in the context of this project\footnote{\url{https://github.com/gerasimou/SoftwareObsolescence/tree/master/org.spg.refactoring}} has been implemented in the form of a plugin for the Eclipse Integrated Development Environment. Care has been taken to keep the number of external dependencies to a minimum. As such, the obsolescence management plugin only depends on:
 \begin{itemize}
-\item \textbf{Eclipse IDE:} Eclipse has a very large adopter and extender base and backwards compatibility is a core priority of the Eclipse development team. As such, we expect that the plugin will work with future versions of Eclipse as-is. There may be added benefit to building on the Eclipse IDE as it provides substantial flexibility and features, which may be of use in future extensions. That said, the complexity of Eclipse is a potential source of risk in future maintenance, as it is a very substantial software system. Care will need to be taken to continue to manage dependencies on different Eclipse components.
+\item \textbf{Eclipse IDE}: Eclipse has a very large adopter and extender base and backwards compatibility is a core priority of the Eclipse development team. As such, we expect that the plugin will work with future versions of Eclipse as-is. There may be added benefit to building on the Eclipse IDE as it provides substantial flexibility and features, which may be of use in future extensions. That said, the complexity of Eclipse is a potential source of risk in future maintenance, as it is a very substantial software system. Care will need to be taken to continue to manage dependencies on different Eclipse components.
 
-\item Eclipse C/C++ Development Tools (CDT)\footnote{\url{https://eclipse.org/cdt}}: Like with the core Eclipse IDE, the C/C++ Development Tools have a large number of extenders and adopters, which in practice guarantees backwards compatibility at least for the foreseeable future. Similar concerns to the Eclipse IDE about future extensions should be raised with CDT; care will need to be taken to manage dependencies.
+\item \textbf{Eclipse C/C++ Development Tools (CDT)\footnote{\url{https://eclipse.org/cdt}}}: Like with the core Eclipse IDE, the C/C++ Development Tools have a large number of extenders and adopters, which in practice guarantees backwards compatibility at least for the foreseeable future. Similar concerns to the Eclipse IDE about future extensions should be raised with CDT; care will need to be taken to manage dependencies.
 
-\item Eclipse Epsilon\footnote{\url{https://eclipse.org/epsilon}}: The obsolescence management solution includes an implementation of the model connectivity interfaces (EMC)\footnote{\url{https://github.com/gerasimou/EMC-CDT/blob/master/org.eclipse.epsilon.emc.cdt }} of Epsilon, which exposes C/C++ code in a form that can be analysed using Epsilon programs. The EMC interfaces of Epsilon have several concrete implementations for tools and frameworks such as the Eclipse Modelling Framework, Matlab Simulink, PTC Integrity Modeller, Excel and XML and thus, backwards compatibility is crucial. As such, we do not expect breaking changes that prohibit the use of the solution with future versions of Epsilon.
+\item \textbf{Eclipse Epsilon\footnote{\url{https://eclipse.org/epsilon}}}: The obsolescence management solution includes an implementation of the model connectivity interfaces (EMC)\footnote{\url{https://github.com/gerasimou/EMC-CDT/blob/master/org.eclipse.epsilon.emc.cdt }} of Epsilon, which exposes C/C++ code in a form that can be analysed using Epsilon programs. The EMC interfaces of Epsilon have several concrete implementations for tools and frameworks such as the Eclipse Modelling Framework, Matlab Simulink, PTC Integrity Modeller, Excel and XML and thus, backwards compatibility is crucial. As such, we do not expect breaking changes that prohibit the use of the solution with future versions of Epsilon.
 
-\item JSCity: The obsolescence management solution visualises 
+\item \textbf{JSCity}: The obsolescence management solution visualises 
 information of the legacy application using 
 JSCity\footnote{\url{https://github.com/ASERG-UFMG/JSCity}}, an open-source 
-JavaScript implementation of the Code City metaphor (described in more details 
+JavaScript implementation of the Code City metaphor (described in more detail 
 in~\cite{gerasimou17}). JSCity has been applied to the visualisation of 
-several software systems and is highly rated Github project. 
+several software systems and is a highly rated Github project. 
 Given the popularity of JSCity and its active base of maintainers and 
 extenders, we expect that the application will continue to be developed and 
 updated at least for the foreseeable future. Finally, some care should be given 
