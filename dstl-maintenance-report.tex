@@ -24,57 +24,56 @@ Department of Computer Science, University of York, UK.\\
 \maketitle
 
 \begin{abstract}
-This report describes concerns related to supporting a technical solution to software obsolescence management long-term,
+This report briefly describes concerns related to supporting a technical solution to software obsolescence management long-term,
 specifically in the context of DSTL. It assumes the desire to support the technical solution in a context where safety-critical
-software systems are being developed, maintained and certified. It identifies three categories of concerns: those related
-to dependencies on the ecosystem in which the solution has been implemented; those related to programming language
-evolution; and those related to qualification (which are discussed in more detail in a companion report).
+software systems are being developed, maintained and certified. It assumes that system integrators or developers are using
+the technical solution. It identifies concerns related to dependencies and backward compatibility, long-term support and
+maintenance, and applicability to future hardware refreshes. Issues related to qualification are discussed inmore detail in a companion report.
 \end{abstract}
 
 \section{Introduction}
 
-% Purpose of report - technical tender says "approach to supporting the solution long term", so we give concerns
-% Structure of report
-
 This report describes concerns related to supporting a technical solution to software obsolescence management long-term.
 The technical solution is based on transformations -- extraction transformations from a legacy application to an abstract
 specification (an abstract syntax tree), and generation transformations that re-host the application to a new software or
-hardware platform. The solution is described in more detail in a companion report \cite{DSTL-Report}.
+hardware platform. The solution is described in more detail in a companion report \cite{gerasimou17}.
 
 The solution builds on existing libraries, toolkits and APIs, and is  non-trivial software system in and of
-itself. Hence, there are issues pertaining to its ongoing support and maintenance. The report classifies these issues
-into three categories: concerns related to dependencies of the solution on its ecosystem and supporting infrastructure
-(particularly Eclipse); concerns related to programming language evolution; and concerns related to qualification. These
-are discussed in more detail in the following sections.
+itself. Hence, there are concerns pertaining to its ongoing support and maintenance. This brief report outlines concerns related to three
+aspects:
+\begin{itemize}
+\item Dependencies and backward compatibility, taking into account particular dependencies on the Eclipse ecosystem;
+\item Long-term support and maintenance;
+\item Applicability to future hardware refreshes.
+\end{itemize}
+Discussion of tool qualification -- which is an issue to consider for future maintenance -- is contained in a companion report \cite{paige17}.
 
 The concerns are explicitly raised assuming that the technical solution is to be maintained in the context of DSTL, where it
-may be put to use in rehosting safety-critical or safety-related software for airborne systems. While some of the concerns
-related to dependencies on the ecosystem are generic (and would apply in any context), the importance and impact associated
-with mitigating these concerns are considered significant for DSTL. 
+may be put to use in rehosting safety-critical or safety-related software for airborne systems. Specifically, the expectation is that
+system integrators or developers would take on the use of the technical solution, where appropriate.
 
+\section{Dependencies and Backwards Compatibility}
+The automated C/C++ obsolescence management solution developed in the context of this project\footnote{\url{https://github.com/gerasimou/SoftwareObsolescence/tree/master/org.spg.refactoring}} has been implemented in the form of a plugin for the Eclipse Integrated Development Environment. Care has been taken to keep the number of external dependencies to a minimum. As such, the obsolescence management plugin only depends on:
+\begin{itemize}
+\item \textbf{Eclipse IDE:} Eclipse has a very large adopter and extender base and backwards compatibility is a core priority of the Eclipse development team. As such, we expect that the plugin will work with future versions of Eclipse as-is. There may be added benefit to building on the Eclipse IDE as it provides substantial flexibility and features, which may be of use in future extensions. That said, the complexity of Eclipse is a potential source of risk in future maintenance, as it is a very substantial software system. Care will need to be taken to continue to manage dependencies on different Eclipse components.
 
+\item Eclipse C/C++ Development Tools (CDT)\footnote{\url{https://eclipse.org/cdt}}: Like with the core Eclipse IDE, the C/C++ Development Tools have a large number of extenders and adopters, which in practice guarantees backwards compatibility at least for the foreseeable future. Similar concerns to the Eclipse IDE about future extensions should be raised with CDT; care will need to be taken to manage dependencies.
 
-\section{Concerns Related to Dependencies on Ecosystem}
+\item Eclipse Epsilon\footnote{\url{https://eclipse.org/epsilon}}: The obsolescence management solution includes an implementation of the model connectivity interfaces (EMC)\footnote{\url{https://github.com/gerasimou/EMC-CDT/blob/master/org.eclipse.epsilon.emc.cdt }} of Epsilon, which exposes C/C++ code in a form that can be analysed using Epsilon programs. The EMC interfaces of Epsilon have several concrete implementations for tools and frameworks such as the Eclipse Modelling Framework, Matlab Simulink, PTC Integrity Modeller, Excel and XML and thus, backwards compatibility is crucial. As such, we do not expect breaking changes that prohibit the use of the solution with future versions of Epsilon.
 
-% Discuss dependencies on Eclipse (CDT, Epsilon etc) that they should be aware of. Perhaps mention the
-% typical Eclipse maintenance cycle and when changes may arise that may impact on maintaining the tool chain.
+\item JSCity: ???
+\end{itemize}
+It is worth noting that all of the technology on which the technical solution depends is proven, robust, and has been maintained for a significant period of time (e.g., Epsilon has been maintained since 2005).
+ 
 
-\section{Concerns Related to Language Evolution}
+\section{Long-Term Support and Maintenance}
+Eclipse follows an annual release cycle with a new major version made available every June. To identify potential compatibility issues with future versions of Eclipse/CDT/Epsilon, it is recommended that an attempt is made to install and test the solution with the latest version of its dependencies, in sync with the Eclipse release cycle. As long as future versions of Eclipse/CDT/Epsilon are backwards compatible, this activity should only require an understanding of assembling an Eclipse bundle from existing plugins and of exercising the facilities of the obsolescence management solution developed in this project.
 
-% Discuss potential evolution of front-end languages (which should not be significant as DSTL will primarily deal
-% older versions of C, C++, Ada.)
-%
-% Discuss potential evolution of back-end/target language (i.e., new versions of C++ with new language features,
-% what impact will this have on the overall tool chain).
-%
-% Briefly discuss potential for change in the languages used to implement the toolchain (e.g., new versions of Java)
+In case of breaking changes, the obsolescence management solution will need to be updated by a developer that has a good understanding of Eclipse plugin development and of the dependencies of the solution (CDT and Epsilon). It is unlikely that this will happen in the forseeable future, based on the release plans of these dependencies, but it is not outside of the realm of reason.
 
-\section{Concerns Related to Tool Qualification}
+\section{Applicability to Future Hardware Refreshes}
+The obsolescence management solution developed in this project operates at the C/C++ code level and as such it can be used to support migration between arbitrary underlying hardware as long as hardware-specific functionality can be expressed in the form of C/C++ libraries. This form of encapsulation is the key assumption that has been made. 
 
-% Link to the assurance report, which should mention the risks associated with qualifying the toolchain against
-% DO-331. This section should be very brief and should highlight that if any of the components of the toolchain 
-% change (e.g., CDT) then qualification may be broken - but there are standard practices to address this. The main
-% expense will come from qualifying the toolchain initially.%
 
 \bibliographystyle{abbrv}
 \bibliography{bibliography}
