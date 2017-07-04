@@ -61,7 +61,18 @@ The automated C/C++ obsolescence management solution developed in the context of
 
 \item Eclipse Epsilon\footnote{\url{https://eclipse.org/epsilon}}: The obsolescence management solution includes an implementation of the model connectivity interfaces (EMC)\footnote{\url{https://github.com/gerasimou/EMC-CDT/blob/master/org.eclipse.epsilon.emc.cdt }} of Epsilon, which exposes C/C++ code in a form that can be analysed using Epsilon programs. The EMC interfaces of Epsilon have several concrete implementations for tools and frameworks such as the Eclipse Modelling Framework, Matlab Simulink, PTC Integrity Modeller, Excel and XML and thus, backwards compatibility is crucial. As such, we do not expect breaking changes that prohibit the use of the solution with future versions of Epsilon.
 
-\item JSCity: ???
+\item JSCity: The obsolescence management solution visualises 
+information of the legacy application using 
+JSCity\footnote{\url{https://github.com/ASERG-UFMG/JSCity}}, an open-source 
+JavaScript implementation of the Code City metaphor (described in more details 
+in~\cite{gerasimou17}). JSCity has been applied to the visualisation of 
+several software systems and is highly rated Github project. 
+Given the popularity of JSCity and its active base of maintainers and 
+extenders, we expect that the application will continue to be developed and 
+updated at least for the foreseeable future. Since this is NodeJS application, 
+some care should be given to managing its dependencies.
+
+
 \end{itemize}
 It is worth noting that all of the technology on which the technical solution depends is proven, robust, and has been maintained for a significant period of time (e.g., Epsilon has been maintained since 2005).
  
